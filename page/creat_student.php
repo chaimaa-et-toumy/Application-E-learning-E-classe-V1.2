@@ -1,6 +1,6 @@
 <?php
  include 'connection.php';
-if(isset($_POST['create'])){
+    if(isset($_POST['create'])){
     $Name = $_POST['Name'];
     $Email = $_POST['Email'];
     $Phone = $_POST['Phone'];
