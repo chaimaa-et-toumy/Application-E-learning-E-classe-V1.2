@@ -2,11 +2,19 @@
  .bg-body {
     background: linear-gradient(69.66deg, #00C1FE 19.39%, #FAFFC1 96.69%);
 }
-.form-class{
+
+.form-classe{
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
-    width: 25rem; 
+    width: 30rem; 
 }
+.form-class{
+    width: 25rem;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+
 
  /* -------------------dashboard--------------------- */
  .div-card {
