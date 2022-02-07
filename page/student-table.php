@@ -34,60 +34,30 @@ $sql = $conn->query('SELECT * FROM student_list');
 
                 <tbody class="border-top-0">
 
+        <?php  while($ligne = $sql->fetch(PDO::FETCH_ASSOC)){ ?>
+            <tr>
 
-                        <!-- <tr class="bg-white text-center">
-                                <td class="align-middle"> <img src="img/profile.png"> </td>
+            <td class="align-middle text-center"> <img src="img/profile.png"> </td>
 
-                              
-                                <td style="cursor: pointer;" class="align-middle">
-                                        <a href="#"> <i class="fa fa-pen text-info"></i> </a>
-                                </td>
-                                <td style="cursor: pointer;" class="align-middle"> <a href="#"> <i
-                                                        class="fa fa-trash text-info"></i> </a> </td>
-                        </tr> -->
-                        <?php 
-        while($ligne = $sql->fetch(PDO::FETCH_ASSOC)){
-            echo '<tr>';
-
-            echo'<td class="align-middle text-center">';
-            echo '<img src="img/profile.png">' ;
-            echo'</td>';
-
-             echo'<td class="align-middle text-center" >';
-                echo $ligne['Name'];
-             echo'</td>';
+            <td class="align-middle text-center" > <?php echo $ligne['Name']; ?> </td>
             
-             echo'<td class="align-middle text-center" >';
-                 echo $ligne['Email'];
-             echo'</td>';
+            <td class="align-middle text-center" > <?php echo $ligne['Email'];  ?> </td>
 
-             echo'<td class="align-middle text-center" >';
-                echo $ligne['Phone'];
-             echo'</td>';
+             <td class="align-middle text-center" > <?php echo $ligne['Phone']; ?></td>
 
-             echo'<td class="align-middle text-center" >';
-                 echo $ligne['Enroll_Number'];
-             echo'</td>';
+             <td class="align-middle text-center" >  <?php  echo $ligne['Enroll_Number']; ?> </td>
 
-             echo'<td class="align-middle text-center" >';
-                echo $ligne['Date_of_admission'];
-             echo'</td>';
+             <td class="align-middle text-center" > <?php  echo $ligne['Date_of_admission'] ?> </td>
 
+             <td class="align-middle text-center"> <a href="page/update.php?Enroll_Number=<?php echo $ligne['Enroll_Number']; ?>"> <i class="fa fa-pen text-info"></i> </a> </td>
 
-             echo '<td class="align-middle text-center">';
-                echo'<i class="fa fa-pen text-info"></i> ';
-             echo '</td>';
+             <td class="align-middle text-center"> <a href="page/delete_student.php?Enroll_Number=<?php echo $ligne['Enroll_Number']; ?>"> <i class="fa fa-trash text-info"></i> </a> </td>
 
-             echo '<td class="align-middle text-center">';
-             echo'<i class="fa fa-trash text-info"></i> ';
-             echo '</td>';
+            </tr>
 
-            echo '</tr>';
-
-        }
-        ?>
-                </tbody>
-        </table>
+       <?php } ?>
+        </tbody>
+</table>
 </div>
 </body>
 

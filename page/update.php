@@ -1,16 +1,5 @@
 <?php
  include 'connection.php';
-if(isset($_POST['create'])){
-    $Name = $_POST['Name'];
-    $Email = $_POST['Email'];
-    $Phone = $_POST['Phone'];
-    $Enroll_Number = $_POST['Enroll_Number'];
-    $Date_of_admission = $_POST['Date_of_admission'];
-    $q = "insert into student_list (Name,Email,Phone,Enroll_Number,Date_of_admission) values ( '" . $Name . "' , '" . $Email . "' ,  $Phone ,  $Enroll_Number  ,'" . $Date_of_admission . "' )";
-    $conn -> exec($q);
-    header('location: ../student.php');
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +24,7 @@ if(isset($_POST['create'])){
         <form class="form-classe card p-4" method="POST" action="#">
             <div class="d-flex justify-content-center">
             <a href="../student.php"><i class="fas fa-backward pe-5"></i></a>
-            <p class="text-uppercase h4 text-center fw-bold"> Creat student </p>
+            <p class="text-uppercase h4 text-center fw-bold"> Update student </p>
             </div>
             <div class="mb-3">
                 <label class="form-label">Name</label>
@@ -58,7 +47,7 @@ if(isset($_POST['create'])){
                 <input type="date" class="form-control" name="Date_of_admission"  placeholder="Entre Date of admission" required>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100" name="create">create</button>
+            <button type="submit" class="btn btn-primary w-100" name="update">Update</button>
         </form>
         </div>
     </main>
