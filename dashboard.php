@@ -1,3 +1,6 @@
+<?php include 'page/connection.php';
+$sql = $conn->query('SELECT * FROM courses');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +30,8 @@
 
             <!-- Contains page content -->
             <div class="content-wrapper pt-3 justify-content-around row me-0">
-                
+            <?php  while($ligne = $sql->fetch(PDO::FETCH_ASSOC)){ ?>
+
                 <div class="col-md-3 col-sm-6 px-2 my-2">
                     <div style="background-color: #F0F9FF;" class="rounded p-3 div-card">
                         <div class="mb-4">
@@ -41,7 +45,7 @@
                                     Students
                                 </p>
                                 <p class="fw-bold h3 float-end mt-3">
-                                    234
+                                <?php echo $ligne['Students']; ?>
                                 </p>
                         </div>
                     </div>
@@ -60,7 +64,7 @@
                                     Cours
                                 </p>
                                 <p class="fw-bold h3 float-end mt-3">
-                                    13
+                                <?php echo $ligne['Cours']; ?>
                                 </p>
                         </div>
                     </div>
@@ -79,7 +83,8 @@
                                     Payments
                                 </p>
                                 <p class="fw-bold h3 text-truncate float-end mt-3">
-                                    <small class="fw-bold">DHS</small> 556,000
+                                    <small class="fw-bold">DHS</small>
+                                    <?php echo $ligne['Payments']; ?>
                                 </p>
                         </div>
                     </div>
@@ -100,12 +105,12 @@
                                 </p>
 
                                 <p class="fw-bold h3 float-end mt-3">
-                                    3
+                                    <?php echo $ligne['Users']; ?>
                                 </p>
                         </div>
                     </div>
                 </div>
-
+                <?php } ?> 
             </div>
         </div>
     </main>
