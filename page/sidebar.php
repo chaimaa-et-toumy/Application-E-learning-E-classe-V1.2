@@ -25,7 +25,7 @@
             </a>
         </li>
         <li class="link-hover">
-            <a href="#" aria-label="course link"
+            <a href="course.php" aria-label="course link"
                 class="nav-link  text-black d-flex justify-content-evenly align-items-center">
                 <i class="far fa-bookmark"></i>
                 <span class="toggle-hide">
