@@ -1,6 +1,53 @@
 <?php
- include 'connection.php';
+
+include 'connection.php';
+
+
+if (!$_GET['Enroll_Number'])
+{
+
+    ?>
+        <p>Not Found<p>
+    <?php
+
+}
+
+else
+{
+
+    $Enroll_Number=$_GET['Enroll_Number'];
+
+
+    if (isset($_POST['update']))
+    {
+
+        $Enroll_Number=$_GET['Enroll_Number'];
+
+        $q = "update student_list
+                set Name=?, Email=?, Phone=?, Date_of_admission=?
+                where Enroll_Number=?";
+
+        $stmt = $conn->prepare($q);
+
+        $stmt->execute([$_POST['Name'], $_POST['Email'], $_POST['Phone'], $_POST['Date_of_admission'], $Enroll_Number]);
+        header ('Location: ../student.php');
+
+
+    }
+
+
+    $q = "select * from student_list where Enroll_Number=?";
+
+    $stmt = $conn->prepare($q);
+
+    $stmt->execute([$Enroll_Number]);
+
+    $ligne = $stmt->fetch();
+
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,23 +75,23 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" class="form-control" name="Name"  placeholder="Entre your name" required>
+                <input type="text" class="form-control" name="Name"  placeholder="Entre your name" required value="<?php echo $ligne['Name']; ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="Email" placeholder="Entre your email"  required>
+                <input type="email" class="form-control" name="Email" placeholder="Entre your email"  required value="<?php echo $ligne['Email']; ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Phone</label>
-                <input type="number" class="form-control" name="Phone" placeholder="Entre your phone"  required>
+                <input type="number" class="form-control" name="Phone" placeholder="Entre your phone"  required value="<?php echo $ligne['Phone']; ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Enroll Number</label>
-                <input type="number" class="form-control" name="Enroll_Number" placeholder="Entre your enroll number"  required>
+                <input type="number" class="form-control" name="Enroll_Number" placeholder="Entre your enroll number"  disabled value="<?php echo $ligne['Enroll_Number']; ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Date of admission</label>
-                <input type="date" class="form-control" name="Date_of_admission"  placeholder="Entre Date of admission" required>
+                <input type="date" class="form-control" name="Date_of_admission"  placeholder="Entre Date of admission" required value="<?php echo $ligne['Date_of_admission']; ?>">
             </div>
 
             <button type="submit" class="btn btn-primary w-100" name="update">Update</button>
