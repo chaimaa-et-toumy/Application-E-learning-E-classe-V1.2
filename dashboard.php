@@ -1,5 +1,15 @@
 <?php include 'page/connection.php';
-$sql = $conn->query('SELECT * FROM courses');
+  $students=$conn->query('SELECT COUNT(*) as numberS  FROM student_list');
+  $students->execute();
+  $nStudents= $students->fetch(PDO::FETCH_ASSOC);
+
+  $courses=$conn->query('SELECT COUNT(*) as numberC  FROM courses');
+  $courses->execute();
+  $nCourses= $courses->fetch(PDO::FETCH_ASSOC);
+
+  $payment=$conn->query('SELECT SUM(Amount_Paid) as totalP FROM payment_details');
+  $payment->execute();
+  $tpayment= $payment->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +40,7 @@ $sql = $conn->query('SELECT * FROM courses');
 
             <!-- Contains page content -->
             <div class="content-wrapper pt-3 justify-content-around row me-0">
-            <?php  while($ligne = $sql->fetch(PDO::FETCH_ASSOC)){ ?>
+            
 
                 <div class="col-md-3 col-sm-6 px-2 my-2">
                     <div style="background-color: #F0F9FF;" class="rounded p-3 div-card">
@@ -45,7 +55,7 @@ $sql = $conn->query('SELECT * FROM courses');
                                     Students
                                 </p>
                                 <p class="fw-bold h3 float-end mt-3">
-                                <?php echo $ligne['Students']; ?>
+                                    <?php echo $nStudents['numberS']?>
                                 </p>
                         </div>
                     </div>
@@ -64,7 +74,7 @@ $sql = $conn->query('SELECT * FROM courses');
                                     Cours
                                 </p>
                                 <p class="fw-bold h3 float-end mt-3">
-                                <?php echo $ligne['Cours']; ?>
+                                     <?php echo $nCourses['numberC']?>
                                 </p>
                         </div>
                     </div>
@@ -83,8 +93,9 @@ $sql = $conn->query('SELECT * FROM courses');
                                     Payments
                                 </p>
                                 <p class="fw-bold h3 text-truncate float-end mt-3">
-                                    <small class="fw-bold">DHS</small>
-                                    <?php echo $ligne['Payments']; ?>
+                                      <?php echo $tpayment['totalP']?> 
+                                      <small class="fw-bold">DHS</small>
+
                                 </p>
                         </div>
                     </div>
@@ -105,12 +116,11 @@ $sql = $conn->query('SELECT * FROM courses');
                                 </p>
 
                                 <p class="fw-bold h3 float-end mt-3">
-                                    <?php echo $ligne['Users']; ?>
+                                   12
                                 </p>
                         </div>
                     </div>
                 </div>
-                <?php } ?> 
             </div>
         </div>
     </main>
