@@ -14,8 +14,9 @@
 </head>
 <?php
 include 'connection.php';
-$sql = $conn->query('SELECT * FROM student_list');
-?>
+$sql = "SELECT * FROM student_list";
+$stmt = $conn -> prepare($sql);
+$stmt -> execute();?>
 <body>
 <div class="table-responsive">
         <table class="table mt-2 table-hover overflow-sm-auto">
@@ -34,7 +35,7 @@ $sql = $conn->query('SELECT * FROM student_list');
 
                 <tbody class="border-top-0">
 
-        <?php  while($ligne = $sql->fetch(PDO::FETCH_ASSOC)){ ?>
+        <?php  while($ligne = $stmt->fetch(PDO::FETCH_ASSOC)){ ?>
             <tr>
 
             <td class="align-middle text-center"> <img src="img/profile.png"> </td>
